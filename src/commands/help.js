@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed } from 'discord.js';
+import { Embed, EmbedBuilder } from 'discord.js';
 import { Logtail } from '@logtail/node';
 import { LogLevel } from '@logtail/types';
 
@@ -10,7 +10,7 @@ const COMMAND_DEFINITION = new SlashCommandBuilder()
 	.setName('help')
 	.setDescription('Display the list of available commands');
 
-const helpCommand = new MessageEmbed()
+const helpCommand = new EmbedBuilder()
 	.setColor('#0099ff')
 	.setTitle(`List of available commands`)
 	.setDescription(

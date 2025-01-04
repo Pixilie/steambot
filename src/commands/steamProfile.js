@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { Logtail } from '@logtail/node';
 import { LogLevel } from '@logtail/types';
-import { MessageEmbed } from 'discord.js';
+import { Embed, EmbedBuilder } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { getIDByNameOrID } from '../helpers.js';
 import { isPrivate } from '../helpers.js';
@@ -77,7 +77,7 @@ async function steamProfile(value, interaction) {
 		ig = `Currently ${states}`;
 	}
 
-	let steamProfileEmbed = new MessageEmbed()
+	let steamProfileEmbed = new EmbedBuilder()
 		.setColor(color)
 		.setTitle(`${player.personaname}'s Steam profile`)
 		.setURL(player.profileurl)

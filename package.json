@@ -1,21 +1,25 @@
 {
-	"name": "steam-bot",
-	"version": "1.2.2",
-	"main": "./src/index.js",
-	"license": "MIT",
-	"type": "module",
-	"dependencies": {
-		"@discordjs/builders": "^1.4.0",
-		"@discordjs/rest": "^1.5.0",
-		"@logtail/node": "^0.4.0",
-		"@prisma/client": "^4.10.1",
-		"discord-api-types": "^0.37.36",
-		"discord.js": "^14.7.1",
-		"dotenv": "^16.0.3",
-		"node": "^20.1.0",
-		"node-fetch": "^3.2.4"
-	},
-	"devDependencies": {
-		"prisma": "^4.10.1"
-	}
+  "name": "steam-bot",
+  "version": "1.2.2",
+  "main": "./src/index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@discordjs/builders": "^1.10.0",
+    "@discordjs/rest": "^1.7.1",
+    "@logtail/node": "^0.4.21",
+    "@prisma/client": "^4.16.2",
+    "discord-api-types": "^0.37.115",
+    "discord.js": "^14.17.2",
+    "dotenv": "^16.4.7",
+    "node": "^20.18.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "prisma": "^4.16.2",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.2"
+  }
 }

@@ -1,24 +1,20 @@
-import { Client, Intents } from 'discord.js';
-import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v9';
-import { SlashCommandBuilder } from '@discordjs/builders';
+import { Client, GatewayIntentBits, REST, Routes } from 'discord.js';
+import { Logtail } from '@logtail/node';
+import { LogLevel } from '@logtail/types';
+
 import * as getTime from './commands/getTime.js';
 import * as recentActivity from './commands/recentActivity.js';
 import * as gamesOwned from './commands/gamesOwned.js';
 import * as steamProfile from './commands/steamProfile.js';
 import * as helpCommand from './commands/help.js';
 import * as setSteamID from './commands/setSteamID.js';
-import { Logtail } from '@logtail/node';
-import { LogLevel } from '@logtail/types';
 
 // Logtail key
 const logtail = new Logtail(process.env.LOGTAIL_KEY);
 
 // Authentifications of the bot
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-
-client.once('ready', () => {
-	client.user.setActivity('your Steam stats', { type: 'WATCHING' });
+const client = new Client({
+	intents: [GatewayIntentBits.Guilds],
 });
 
 // Slash commands registration
@@ -31,12 +27,11 @@ const commands = [
 	setSteamID.COMMAND_DEFINITION,
 ].map((command) => command.toJSON());
 
-const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
-rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+
+await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
 	body: commands,
 })
-	.then(() => console.log("Successfully registered application's commands"))
-	.catch(console.error);
 
 client.on('interactionCreate', async (interaction) => {
 	if (!interaction.isCommand()) return;
@@ -66,4 +61,4 @@ client.on('interactionCreate', async (interaction) => {
 
 // Login to Discord
 client.login(process.env.TOKEN);
-logtail.info('Successfully logged in. \n SteamBot is ready!', LogLevel.Info);
+console.log("Ready")
